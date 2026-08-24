@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Klaude Buddy — User Guide</title>
+<meta name="description" content="Screen-by-screen guide to setting up and using Klaude Buddy, a desk display for weather, custom APIs, shortcuts, and Claude usage tracking.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12151c; --bg2:#161b25; --panel:#1a2029; --panel2:#212838;
+    --line:#2a3140; --ink:#f2f0ec; --ink-dim:#aab2c0; --muted:#6f7889;
+    --orange:#D77558; --orange-dim:#a85d46; --mint:#7fd9b0;
+    --radius:14px;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.mono{font-family:'JetBrains Mono',monospace}
+  a{color:var(--orange)}
+  img{max-width:100%; display:block}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+
+  /* ── Nav ── */
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(18,21,28,0.9); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; gap:24px; padding:14px 24px; overflow-x:auto}
+  nav .brand{font-weight:700; color:var(--ink); white-space:nowrap; text-decoration:none; letter-spacing:0.02em}
+  nav .links{display:flex; gap:18px; font-size:0.88rem}
+  nav .links a{color:var(--ink-dim); text-decoration:none; white-space:nowrap}
+  nav .links a:hover{color:var(--orange)}
+
+  /* ── Hero ── */
+  header.hero{padding:72px 0 48px; text-align:center; border-bottom:1px solid var(--line)}
+  header.hero .eyebrow{
+    display:inline-block; color:var(--orange); font-size:0.78rem; letter-spacing:0.12em;
+    text-transform:uppercase; margin-bottom:14px;
+  }
+  header.hero h1{font-size:2.6rem; margin:0 0 12px; letter-spacing:-0.01em}
+  header.hero p.tagline{color:var(--ink-dim); font-size:1.15rem; max-width:640px; margin:0 auto 36px}
+
+  .video-slot{
+    max-width:720px; margin:0 auto 22px; border-radius:var(--radius);
+    overflow:hidden; border:1px solid var(--line); background:var(--panel);
+    aspect-ratio:16/9; display:flex; align-items:center; justify-content:center;
+  }
+  .video-slot iframe, .video-slot video{width:100%; height:100%; border:0; display:block}
+  .video-placeholder{
+    color:var(--muted); font-size:0.95rem; text-align:center; padding:20px;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .video-placeholder b{color:var(--ink-dim)}
+
+  .buy-btn{
+    display:inline-block; background:var(--orange); color:#161311; font-weight:700;
+    padding:14px 34px; border-radius:999px; text-decoration:none; font-size:1.05rem;
+    box-shadow:0 8px 24px rgba(215,117,88,0.28);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .buy-btn:hover{transform:translateY(-2px); box-shadow:0 10px 28px rgba(215,117,88,0.4)}
+
+  /* ── Sections ── */
+  section{padding:56px 0}
+  section.alt{background:var(--bg2)}
+  section h2{font-size:1.6rem; margin:0 0 6px}
+  section .section-kicker{color:var(--muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px}
+  section > .wrap > p.lead{color:var(--ink-dim); max-width:640px; margin:0 0 36px}
+
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; margin-bottom:22px;
+  }
+  .card h3{margin:0 0 4px; font-size:1.2rem; display:flex; align-items:center; gap:10px}
+  .card .badge{
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--orange);
+    border:1px solid var(--orange-dim); border-radius:999px; padding:2px 10px;
+    text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .card p{color:var(--ink-dim); margin:10px 0}
+  .card ul{color:var(--ink-dim); margin:10px 0; padding-left:20px}
+  .card li{margin:4px 0}
+  .card code{
+    background:var(--panel2); border:1px solid var(--line); border-radius:6px;
+    padding:1px 7px; font-family:'JetBrains Mono',monospace; font-size:0.88em; color:var(--mint);
+  }
+
+  .shot{
+    margin-top:18px; border-radius:10px; overflow:hidden; border:1px dashed var(--line);
+    background:var(--panel2); position:relative;
+  }
+  .shot img{width:100%}
+  .shot .fallback{
+    display:none; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    padding:44px 20px; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:0.85rem; text-align:center;
+  }
+  .shot .fallback .path{color:var(--ink-dim)}
+  .shot.broken img{display:none}
+  .shot.broken .fallback{display:flex}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+  @media (max-width:760px){ .grid2{grid-template-columns:1fr} nav .links{display:none} }
+
+  /* ── Footer ── */
+  footer{padding:44px 0 60px; border-top:1px solid var(--line)}
+  footer p{color:var(--muted); font-size:0.85rem; max-width:680px}
+  footer .legal{margin-top:18px; padding-top:18px; border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"> &gt;_&lt; Klaude Buddy</a>
+    <div class="links">
+      <a href="#quickstart">Quick Start</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#screens">Screens</a>
+      <a href="#settings">Settings</a>
+      <a href="#updates">Updates</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">User Guide</span>
+    <h1>Klaude Buddy</h1>
+    <p class="tagline">A small desk display for weather, your Claude usage, custom API dashboards, and one-tap shortcuts — set up in a few minutes, no app store required.</p>
+
+    <div class="video-slot">
+      <!--
+        REPLACE THIS COMMENT WITH YOUR VIDEO EMBED, for example:
+        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+      -->
+      <div class="video-placeholder">🎬 <b>Demo video goes here</b><br>Replace this block with a YouTube/Vimeo &lt;iframe&gt; embed.</div>
+    </div>
+
+    <!-- REPLACE href="#" BELOW WITH YOUR STORE LINK -->
+    <a class="buy-btn" href="#">🛒 Buy it here!</a>
+  </div>
+</header>
+
+<section id="quickstart">
+  <div class="wrap">
+    <div class="section-kicker">Getting Started</div>
+    <h2>Setting up Wi-Fi</h2>
+    <p class="lead">The very first time you power it on — or any time after a factory reset — the device creates its own Wi-Fi network so you can connect it to your home network.</p>
+
+    <div class="card">
+      <h3>📶 First boot / setup mode</h3>
+      <ol>
+        <li>Power on the device. It shows a screen with a network name and an IP address.</li>
+        <li>On your phone or computer, connect to the Wi-Fi network named <code>Klaude-Buddy-Setup</code>.</li>
+        <li>Open a browser and go to <code>192.168.4.1</code>.</li>
+        <li>Enter your home Wi-Fi name and password, then save.</li>
+        <li>The device restarts and joins your network automatically.</li>
+      </ol>
+      <div class="shot" data-name="wifi-setup">
+        <img src="assets/screens/wifi-setup.png" alt="Wi-Fi setup screen"
+             onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/wifi-setup.png</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="dashboard">
+  <div class="wrap">
+    <div class="section-kicker">The Control Panel</div>
+    <h2>The Dashboard</h2>
+    <p class="lead">Once connected to your Wi-Fi, everything is configured from a web dashboard — no app to install. Open it from any browser on the same network.</p>
+
+    <div class="card">
+      <h3>🌐 Reaching the dashboard</h3>
+      <p>Visit <code>http://klaude-buddy.local</code>, or the device's IP address shown on its <b>Info</b> screen. The dashboard has tabs across the top: <b>Status</b>, <b>Wi-Fi</b>, <b>Channels</b>, <b>APIs</b>, <b>Shortcuts</b>, <b>Pet</b>, <b>You</b>, and <b>Device</b>.</p>
+      <p>The <b>Channels</b> tab is where you turn each screen below on or off, and choose how long the display lingers on each one before rotating to the next.</p>
+      <div class="shot" data-name="dashboard-status">
+        <img src="assets/screens/dashboard-status.png" alt="Dashboard status tab"
+             onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/dashboard-status.png</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="screens">
+  <div class="wrap">
+    <div class="section-kicker">Screen by Screen</div>
+    <h2>What each screen shows</h2>
+    <p class="lead">The device rotates automatically through whichever of these you've enabled. Tap the screen at any time to pause the rotation, or to jump forward.</p>
+
+    <div class="card">
+      <h3>🕐 Clock <span class="badge">Always on</span></h3>
+      <p>Large time display with the date, a day-progress dot strip, the current week number, and a friendly greeting that changes through the day. If you've searched for a city under <b>Weather</b>, its name appears here too.</p>
+      <div class="shot" data-name="clock">
+        <img src="assets/screens/clock.png" alt="Clock screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/clock.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🌤 Weather <span class="badge">Channels tab</span></h3>
+      <p>Search for any city in the world (powered by Open-Meteo — no account or API key needed) and pick it from the results. Shows current temperature, "feels like," humidity, wind, and conditions, in °C or °F.</p>
+      <div class="shot" data-name="weather">
+        <img src="assets/screens/weather.png" alt="Weather screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/weather.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📅 3-Day Forecast</h3>
+      <p>Today plus the next two days, for the same city as the Weather screen. Each day shows a low-to-high range bar (colder on one end, warmer on the other) so you can see at a glance which of the three days is relatively hot or cold.</p>
+      <div class="shot" data-name="forecast">
+        <img src="assets/screens/forecast.png" alt="Forecast screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/forecast.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>ℹ️ Device Info</h3>
+      <p>Diagnostics at a glance: IP address, Wi-Fi network and signal strength, uptime, free memory, CPU speed, firmware version, how many screens are active, and when data was last refreshed.</p>
+      <div class="shot" data-name="info">
+        <img src="assets/screens/info.png" alt="Device info screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/info.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🔌 Custom APIs <span class="badge">APIs tab</span></h3>
+      <p>Connect up to 8 of your own APIs — anything that returns JSON. For each one you set a title, the endpoint URL, an optional auth header, and how often it refreshes (from every 5 minutes up to once a day). Then pick which values to show by pointing at a field inside the response, e.g. <code>data.visits.daily</code>.</p>
+      <p>If an API has more fields than fit on one screen, it automatically pages through them, giving each page its own turn on screen.</p>
+      <div class="shot" data-name="custom-apis">
+        <img src="assets/screens/custom-apis.png" alt="Custom APIs screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/custom-apis.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🔗 Shortcuts <span class="badge">Needs companion app</span></h3>
+      <p>Up to 45 one-tap shortcuts to your favorite links. This needs a small companion app running on a computer connected to the device by USB — tapping a shortcut tells that computer to open the link in its browser.</p>
+      <div class="shot" data-name="shortcuts">
+        <img src="assets/screens/shortcuts.png" alt="Shortcuts screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/shortcuts.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📋 Clipboard <span class="badge">Needs companion app</span></h3>
+      <p>Four buttons — Select All, Cut, Copy, Paste — that simulate the matching keyboard shortcut on the connected computer. Same companion app as Shortcuts.</p>
+      <div class="shot" data-name="clipboard">
+        <img src="assets/screens/clipboard.png" alt="Clipboard screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/clipboard.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📊 Claude Usage <span class="badge">Channels tab</span></h3>
+      <p>Paste your claude.ai session key once, and the device fetches your usage directly over Wi-Fi — no computer needs to stay on. Shows your current 5-hour window and weekly usage side by side, each with a countdown to when it resets.</p>
+      <div class="shot" data-name="claude-usage">
+        <img src="assets/screens/claude-usage.png" alt="Claude usage screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/claude-usage.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🦞 Pet <span class="badge">Channels tab</span></h3>
+      <p>Your device's own mascot. In Automatic mode it reacts to how fast you're using up your Claude quota; in Manual mode you pick a fixed expression yourself.</p>
+      <div class="shot" data-name="pet">
+        <img src="assets/screens/pet.png" alt="Pet screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/pet.png</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="settings">
+  <div class="wrap">
+    <div class="section-kicker">Dashboard Tabs</div>
+    <h2>Personalizing your device</h2>
+    <p class="lead">A couple of dashboard tabs shape the whole device rather than a single screen.</p>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>🙋 You</h3>
+        <p>Your name and birthday (used in on-screen greetings), display brightness, and your timezone — picked from a list of world cities, with automatic Daylight Saving handling where it applies.</p>
+        <div class="shot" data-name="personalization">
+          <img src="assets/screens/personalization.png" alt="Personalization tab" onerror="this.parentElement.classList.add('broken')">
+          <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/personalization.png</span></div>
+        </div>
+      </div>
+      <div class="card" id="updates">
+        <h3>⚙️ Device</h3>
+        <p>Check for and install software updates, restart the device, or use <b>Factory Reset</b> to erase Wi-Fi and all saved settings — handy if you're passing the device on to someone else.</p>
+        <div class="shot" data-name="device-tab">
+          <img src="assets/screens/device-tab.png" alt="Device tab" onerror="this.parentElement.classList.add('broken')">
+          <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/device-tab.png</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Klaude Buddy is an independent hardware project. It can display your own usage statistics for the Claude AI service (by Anthropic) when you provide your own session key, but the device, this guide, and its mascot are not affiliated with, endorsed by, or sponsored by Anthropic.</p>
+    <div class="legal">
+      <p>"Claude" is a trademark of Anthropic, PBC, referenced here only to describe compatibility.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
