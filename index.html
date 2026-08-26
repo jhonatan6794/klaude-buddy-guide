@@ -316,14 +316,26 @@
       <p>A small desktop app that sits in the background on a computer connected to the device by USB. It listens for taps on the Shortcuts and Clipboard screens and acts on them — opening a link in your browser, or simulating a keyboard shortcut. It never runs arbitrary commands, only those two specific, safe actions.</p>
       <p><b>The device needs to stay physically plugged into that computer by USB</b> the whole time — Shortcuts and Clipboard talk to the app over that same USB cable, not over Wi-Fi or the network. If you unplug it, or plug it into a different computer, only that connected computer's companion app (if running) will respond to taps.</p>
       <p><a href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.9.0/KlaudeShortcutsSetup.exe">⬇️ Download for Windows</a> &nbsp;·&nbsp; <a href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.9.0/KlaudeShortcuts-Mac-Installer.zip">🍎 Download for Mac</a></p>
-      <p><b>Windows:</b> run <code>KlaudeShortcutsSetup.exe</code> and follow the installer. It sets up autostart automatically and adds a proper entry in <b>Add or Remove Programs</b> if you ever want to uninstall it.</p>
-      <p><b>Mac:</b> unzip the download, then run <code>KlaudeShortcutsInstaller.pkg</code>. Since it isn't signed by a registered Apple developer yet, macOS blocks it the first time — this is normal, and only needs doing once:</p>
+
+      <p><b>Windows setup:</b></p>
       <ol>
+        <li>Run <code>KlaudeShortcutsSetup.exe</code> and follow the installer (Next → Install → Finish).</li>
+        <li>It starts automatically once installed, and sets itself to launch every time you log in — no need to open anything by hand afterward.</li>
+        <li>Already have an older version installed? Just run the new installer over it — it upgrades in place, no need to uninstall first.</li>
+        <li>To remove it later: <b>Settings → Apps</b> (or Control Panel → Programs), find <b>Klaude Shortcuts</b>, and uninstall — it's a proper entry, not just a loose file.</li>
+      </ol>
+
+      <p><b>Mac setup:</b> unzip the download first — you'll get <code>KlaudeShortcutsInstaller.pkg</code> and a separate uninstaller. The <code>.pkg</code> isn't signed by a registered Apple developer yet, so macOS blocks it the first time; this is a one-time step.</p>
+      <ol>
+        <li>Double-click <code>KlaudeShortcutsInstaller.pkg</code>.</li>
         <li>If you see <i>"cannot be opened because it is from an unidentified developer"</i>: open <b>System Settings → Privacy &amp; Security</b>, scroll down, and click <b>Open Anyway</b> next to the message about the blocked installer (confirm with your password or Touch ID). Then double-click the <code>.pkg</code> again.</li>
         <li>If instead it says the installer <i>"is damaged and can't be opened"</i>, that's Gatekeeper reacting to the browser's download quarantine flag, not an actual broken file — open Terminal and run <code>xattr -cr ~/Downloads/KlaudeShortcutsInstaller.pkg</code> (adjust the path if you saved it elsewhere), then open it normally.</li>
+        <li>Follow the installer (it'll ask for your Mac password since it installs into Applications). It installs the app, sets it to launch on login, and opens it once automatically.</li>
+        <li>Separately from the step above, it needs one more permission for Copy/Paste to work: go to <b>System Settings → Privacy &amp; Security → Accessibility</b> (a different tab from the one used to unblock the installer) and enable the checkbox next to <b>KlaudeShortcuts</b>. Shortcuts — opening links — works without this; only Clipboard needs it.</li>
+        <li>To remove it later, double-click <b>"Uninstall KlaudeShortcuts.command"</b> (included in the same zip) — no Terminal commands needed.</li>
       </ol>
-      <p>Follow the installer — it installs the app to Applications and sets up autostart. It then opens once on its own and, separately from the step above, prompts for one more permission: go to <b>System Settings → Privacy &amp; Security → Accessibility</b> (a different tab from the one used to unblock the installer) and enable the checkbox next to <b>KlaudeShortcuts</b>. This second permission is only needed for Copy/Paste — Shortcuts (opening links) works without it.</p>
-      <p>To remove it later, double-click <b>"Uninstall KlaudeShortcuts.command"</b> (included in the same zip) — no Terminal commands needed.</p>
+
+      <p><b>Either platform, once installed:</b> plug the device in by USB-C, open the Shortcuts screen on it, and tap one — a browser tab should open with that link, coming to the front even if you were doing something else on the computer.</p>
     </div>
 
     <div class="card">
