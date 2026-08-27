@@ -161,8 +161,8 @@
     <a class="buy-btn" href="#">🛒 Buy it here!</a>
 
     <div class="dl-row">
-      <a class="dl-btn" href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.9.0/KlaudeShortcutsSetup.exe">⬇️ Companion app — Windows</a>
-      <a class="dl-btn" href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.9.0/KlaudeShortcuts-Mac-Installer.zip">🍎 Companion app — Mac</a>
+      <a class="dl-btn" href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.10.0/KlaudeShortcutsSetup.exe">⬇️ Companion app — Windows</a>
+      <a class="dl-btn" href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.10.0/KlaudeShortcuts-Mac-Installer.zip">🍎 Companion app — Mac</a>
     </div>
   </div>
 </header>
@@ -291,6 +291,7 @@
     <div class="card">
       <h3>🔗 Shortcuts <span class="badge">Needs companion app</span></h3>
       <p>Up to <b>45 one-tap shortcuts</b> to your favorite links, shown <b>15 per page</b> (so up to 3 pages) — swipe to move between pages. This needs a small companion app running on a computer connected to the device by USB — tapping a shortcut tells that computer to open the link in its browser.</p>
+      <p>A brand-new device comes with one shortcut already loaded — the <code>&gt;_&lt;</code> icon, which opens the device's own dashboard in your browser. Edit or delete it like any other shortcut; it's just a convenient default, not something special.</p>
       <div class="shot" data-name="shortcuts">
         <img src="assets/screens/shortcuts.png" alt="Shortcuts screen" onerror="this.parentElement.classList.add('broken')">
         <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/shortcuts.png</span></div>
@@ -317,7 +318,7 @@
       <h3>💻 The companion app <span class="badge">For Shortcuts &amp; Clipboard</span></h3>
       <p>A small desktop app that sits in the background on a computer connected to the device by USB. It listens for taps on the Shortcuts and Clipboard screens and acts on them — opening a link in your browser, or simulating a keyboard shortcut. It never runs arbitrary commands, only those two specific, safe actions.</p>
       <p><b>The device needs to stay physically plugged into that computer by USB</b> the whole time — Shortcuts and Clipboard talk to the app over that same USB cable, not over Wi-Fi or the network. If you unplug it, or plug it into a different computer, only that connected computer's companion app (if running) will respond to taps.</p>
-      <p><a href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.9.0/KlaudeShortcutsSetup.exe">⬇️ Download for Windows</a> &nbsp;·&nbsp; <a href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.9.0/KlaudeShortcuts-Mac-Installer.zip">🍎 Download for Mac</a></p>
+      <p><a href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.10.0/KlaudeShortcutsSetup.exe">⬇️ Download for Windows</a> &nbsp;·&nbsp; <a href="https://github.com/jhonatan6794/klaude-display-releases/releases/download/companion-app-v2.10.0/KlaudeShortcuts-Mac-Installer.zip">🍎 Download for Mac</a></p>
 
       <p><b>Windows setup:</b></p>
       <ol>
@@ -358,7 +359,36 @@
 
 
 
-      
+
+    </div>
+
+    <div class="card">
+      <h3>🔥 Max Tracker <span class="badge">Channels tab</span></h3>
+      <p>A GitHub-style heatmap of your daily Claude usage peaks over the last 8 weeks, plus your current streak. Rides the same session key as Claude Usage above — if that's already set up, there's nothing else to configure.</p>
+      <div class="shot" data-name="max-tracker">
+        <img src="assets/screens/max-tracker.png" alt="Max Tracker screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/max-tracker.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🙋 Needs You <span class="badge">Channels tab · Needs companion app once</span></h3>
+      <p>Answer a blocked Claude Code permission prompt with a tap on the device — over Wi-Fi, no USB cable needed at the moment it happens. When a <code>PreToolUse</code> hook fires, the display interrupts whatever screen was showing with the tool name and a short summary, plus a quick brightness flash so it's hard to miss.</p>
+      <p>Tap <b>Approve</b> or <b>Deny</b> to answer directly. The <b>✕</b> in the corner dismisses the popup without deciding — the device goes back to normal, and Claude Code falls back to asking you in the terminal as usual.</p>
+      <p>Setup is one-time and mostly automatic: if you already have Claude Code configured on the same computer running the companion app (see <b>Shortcuts</b> below), the app registers the hook by itself the first time it opens — no separate script to run. Then just turn on <b>Needs You</b> in the dashboard's Channels tab.</p>
+      <div class="shot" data-name="needs-you">
+        <img src="assets/screens/needs-you.png" alt="Needs You screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/needs-you.png</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>☀️ Brightness <span class="badge">Channels tab</span></h3>
+      <p>A grid of buttons to change the screen's brightness by tapping the device directly, without opening the dashboard — same options as the brightness dropdown in <b>Device</b> settings.</p>
+      <div class="shot" data-name="brightness">
+        <img src="assets/screens/brightness.png" alt="Brightness screen" onerror="this.parentElement.classList.add('broken')">
+        <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/brightness.png</span></div>
+      </div>
     </div>
 
     <div class="card">
