@@ -309,6 +309,7 @@
     <div class="card">
       <h3>🔗 Shortcuts <span class="badge">Needs companion app</span></h3>
       <p>Up to <b>45 one-tap shortcuts</b> to your favorite links, shown <b>15 per page</b> (so up to 3 pages) — swipe to move between pages. This needs a small companion app running on a computer connected to the device by USB — tapping a shortcut tells that computer to open the link in its browser.</p>
+      <p>Each shortcut can show a real icon instead of just the first letter of its name — pick one from the dashboard's icon dropdown next to each link. Leave it on "None" to keep the big-letter look.</p>
       <p>A brand-new device comes with one shortcut already loaded — the <code>&gt;_&lt;</code> icon, which opens the device's own dashboard in your browser. Edit or delete it like any other shortcut; it's just a convenient default, not something special.</p>
       <div class="shot" data-name="shortcuts">
         <img src="assets/screens/shortcuts.png" alt="Shortcuts screen" onerror="this.parentElement.classList.add('broken')">
@@ -325,7 +326,9 @@
 
     <div class="card">
       <h3>📋 Clipboard <span class="badge">Needs companion app</span></h3>
-      <p>3 pages, swipe left/right on the device to move between them. Page 1 is fixed: Select All, Cut, Copy, Paste, New Tab, All Apps, and Show Desktop. Pages 2 and 3 are yours to customize from the dashboard's Clipboard tab — pick any action for each of 6 slots per page (Undo, Redo, Find, Save, Switch App, Screenshot, Print, Lock Screen, and more). Same companion app as Shortcuts — needs v2.11.0 or later for the new actions to work.</p>
+      <p>Swipe left/right on the device to move between pages — <b>every page is customizable</b> from the dashboard's Clipboard tab, including Page 1. Nothing needs to be reconfigured out of the box: Page 1 ships with Select All, Cut, New Tab, Copy, Paste, All Apps, and Desktop already set, and Pages 2 and 3 ship with a curated set of the most-used shortcuts (Undo, Redo, Find, Save, Switch App, Screenshot, Refresh, Reopen Tab, Print, Zoom In, Zoom Out, Lock) — change any slot on any page to whatever you actually want.</p>
+      <p>Want more than 3 pages? The dashboard's Clipboard tab has a "Total pages after Page 1" dropdown (1 to 6) — raise it to add more customizable pages, 6 slots each. Lowering it again never loses what you'd saved on a page you hide this way.</p>
+      <p>Same companion app as Shortcuts — needs v2.11.0 or later for the new actions to work.</p>
       <div class="shot" data-name="clipboard">
         <img src="assets/screens/clipboard.png" alt="Clipboard screen" onerror="this.parentElement.classList.add('broken')">
         <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/clipboard.png</span></div>
@@ -529,6 +532,22 @@
           <div class="fallback">📷 Add screenshot<br><span class="path">assets/screens/device-tab.png</span></div>
         </div>
       </div>
+    </div>
+
+    <div class="card">
+      <h3>🔒 Dashboard password <span class="badge">Wi-Fi tab</span></h3>
+      <p>If your device is on a shared network — a university dorm, a shared office Wi-Fi — anyone else on that same network could otherwise open its dashboard and change your shortcuts, APIs, or Wi-Fi. Set a password under the <b>Wi-Fi</b> tab's "Dashboard password" card to require a login before the dashboard opens. The username is always <code>admin</code>; leave the password blank to turn the login off again.</p>
+      <p><b>Forgot the password?</b> No need to reset the whole device. On the back of the device, press and hold the physical <b>BOOT</b> button for <b>10 seconds</b> — it clears only the dashboard password, leaving your Wi-Fi, shortcuts, APIs, and everything else exactly as they were.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔘 Recovery button <span class="badge">Physical button</span></h3>
+      <p>The small button on the back labeled <b>BOOT</b> doubles as a recovery button once the device is set up (the other one, <b>RST</b>, is just a plain restart):</p>
+      <ul>
+        <li><b>Hold 2 seconds</b> — forces the screen to 100% brightness and saves it. Use this if the screen was set too dim or dark to see or use.</li>
+        <li><b>Hold 10 seconds</b> — clears the dashboard password (see above), if you set one and forgot it.</li>
+      </ul>
+      <p>Both only touch that one setting — nothing else on the device is reset or lost.</p>
     </div>
   </div>
 </section>
